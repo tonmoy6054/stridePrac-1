@@ -10,7 +10,7 @@ const Category = () => {
       try {
         const response = await fetch('/data/category.json');
         const data = await response.json();
-        setCategories(data.slice(0, 4)); // Display only the first 4 categories
+        setCategories(data.slice(0, 4)); 
       } catch (error) {
         console.error('Error fetching the categories:', error);
       }

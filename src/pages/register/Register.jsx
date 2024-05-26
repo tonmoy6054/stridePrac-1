@@ -1,6 +1,10 @@
 import  { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { createUserWithEmailAndPassword, getAuth } from "firebase/auth";
+import app from '../../firebase/firebase.config';
 
+
+const auth = getAuth(app);
 const Register = () => {
   const [form, setForm] = useState({ username: '', email: '', password: '' });
   const navigate = useNavigate();
@@ -11,9 +15,19 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const { email, password } = form; 
     // Here you can add the logic for registering the user (e.g., API call)
-    console.log('Registered:', form);
-    navigate('/login'); // Redirect to login page after registration
+    
+  
+    createUserWithEmailAndPassword(auth, email, password)
+    .then(result => {
+      const loggedUser = result.user;
+      console.log(loggedUser);
+    })
+    .catch(err => {
+console.log(err.message);
+    })
+    navigate('/login');
   };
 
   return (

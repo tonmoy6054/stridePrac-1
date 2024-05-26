@@ -3,19 +3,19 @@ const testimonials = [
   {
     name: 'John Doe',
     role: 'CEO, ExampleCorp',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpMHHzRF_v4aniW2pT141J9hZumhWn5TN_sq8e0D2sLg&s',
     text: 'This service is fantastic! It has greatly improved our workflow and efficiency.'
   },
   {
     name: 'Jane Smith',
     role: 'CTO, Tech Innovators',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRejpS03myZU3z7_MB5FMW3duQO3idmQcmSULmTeSCdCg&s',
     text: 'Amazing results! We couldn’t be happier with the quality and support provided.'
   },
   {
     name: 'Emily Johnson',
     role: 'Manager, Business Solutions',
-    image: 'https://via.placeholder.com/150',
+    image: 'https://w7.pngwing.com/pngs/15/806/png-transparent-male-youtube-knight-dental-care-single-person-dentist-youtube-business-dating-smile-man-thumbnail.png',
     text: 'A game changer for our business. The customer service is top-notch.'
   }
 ];
