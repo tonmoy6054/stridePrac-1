@@ -5,15 +5,14 @@
 //   const history = useHistory();
 
 //   const handleDelete = () => {
-//     // Delete logic here
-//     // Assuming the deletion is successful
+    
 //     alert("Product deleted successfully!");
-//     // Redirect to the dashboard or any other page after successful deletion
+   
 //     history.push('/');
 //   };
 
 //   const handleCancel = () => {
-//     // Redirect to the dashboard or any other page if the user cancels the action
+   
 //     history.push('/');
 //   };
 

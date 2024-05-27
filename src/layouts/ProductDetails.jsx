@@ -2,15 +2,15 @@ import  { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 const ProductDetails = () => {
-  const { id } = useParams(); // Get the product ID from the URL params
+  const { id } = useParams(); 
   const [product, setProduct] = useState(null);
 
   useEffect(() => {
-    // Fetch product details using the product ID
+    
     fetch(`/data/category.json`)
       .then(response => response.json())
       .then(data => {
-        // Find the product with the matching ID
+        
         const foundProduct = data.find(item => item.id === parseInt(id));
         setProduct(foundProduct);
       })
@@ -25,7 +25,7 @@ const ProductDetails = () => {
           <p className="text-gray-600 mb-4">{product.description}</p>
           <img src={product.image} alt={product.name} className="mb-4" style={{ maxWidth: '100%', maxHeight: '300px' }} />
           <p className="text-gray-600">Created At: {product.createdAt}</p>
-          {/* Display other product details as needed */}
+        
         </div>
       ) : (
         <p>Loading...</p>

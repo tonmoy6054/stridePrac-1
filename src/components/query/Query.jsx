@@ -9,9 +9,9 @@ const Query = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Here you can add the logic for handling the form submission (e.g., API call)
+    
     console.log('Query submitted:', form);
-    // Reset form fields after submission
+    
     setForm({ name: '', email: '', message: '' });
   };
 

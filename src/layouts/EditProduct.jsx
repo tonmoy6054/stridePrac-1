@@ -3,27 +3,25 @@ import { useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const EditProduct = () => {
-    const { id } = useParams(); // Corrected variable name
+    const { id } = useParams();
     const [product, setProduct] = useState(null);
 
     useEffect(() => {
         fetch('/data/category.json')
             .then(response => response.json())
             .then(data => {
-                const foundProduct = data.find(item => item.id === parseInt(id)); // Corrected variable name
+                const foundProduct = data.find(item => item.id === parseInt(id)); 
                 setProduct(foundProduct);
             })
             .catch(error => console.error('Error fetching product:', error));
-    }, [id]); // Corrected dependency
+    }, [id]); 
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Handle form submission
-      
-        // Show alert
+        
         alert('Product updated successfully!');
       
-        // Show success toast
+       
         toast.success('Product updated successfully!', {
           position: toast.POSITION.TOP_CENTER
         });
