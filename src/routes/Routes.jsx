@@ -1,6 +1,6 @@
 // import {
 //     createBrowserRouter,
-   
+
 //   } from "react-router-dom";
 // import MainLayout from "../layouts/MainLayout";
 
@@ -53,10 +53,9 @@
 //     }
 //     ]
 //     },
-    
-    
+
 //     <PrivateRoute path="/dashboard" component={Dashboard} />
-    
+
 //     {
 //         path: '/edit-product/:id',
 //         element: <EditProduct />
@@ -75,20 +74,20 @@ import {
   RouterProvider,
   Route,
   createRoutesFromElements,
-} from 'react-router-dom';
-import MainLayout from '../layouts/MainLayout';
-import About from '../pages/about/About';
-import Contact from '../pages/contact/Contact';
-import Login from '../pages/Login/Login';
-import Register from '../pages/register/Register';
-import AllProducts from '../pages/products/AllProducts';
-import Home from '../components/home/Home';
-import AllCategories from '../pages/all-categories/AllCategories';
-import AddProduct from '../layouts/AddProduct';
-import EditProduct from '../layouts/EditProduct';
-import Dashboard from '../layouts/DashboardLayout';
-import PrivateRoute from '../routes/PrivateRoute';
-import ProductDetails from '../layouts/ProductDetails';
+} from "react-router-dom";
+import MainLayout from "../layouts/MainLayout";
+import About from "../pages/about/About";
+import Contact from "../pages/contact/Contact";
+import Login from "../pages/Login/Login";
+import Register from "../pages/register/Register";
+import AllProducts from "../pages/products/AllProducts";
+import Home from "../components/home/Home";
+import AllCategories from "../pages/all-categories/AllCategories";
+import AddProduct from "../layouts/AddProduct";
+import EditProduct from "../layouts/EditProduct";
+import Dashboard from "../layouts/DashboardLayout";
+import PrivateRoute from "../routes/PrivateRoute";
+import ProductDetails from "../layouts/ProductDetails";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -106,7 +105,7 @@ const router = createBrowserRouter(
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/edit-product/:id" element={<EditProduct />} />
         <Route path="/add-product" element={<AddProduct />} />
-        <Route path="/product-details/:id" element={<ProductDetails />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
       </Route>
     </>
   )

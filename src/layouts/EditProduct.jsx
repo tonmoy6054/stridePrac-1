@@ -1,52 +1,97 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const EditProduct = () => {
-    const { id } = useParams();
-    const [product, setProduct] = useState(null);
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ name: '', description: '' });
+  const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-        fetch('/data/category.json')
-            .then(response => response.json())
-            .then(data => {
-                const foundProduct = data.find(item => item.id === parseInt(id)); 
-                setProduct(foundProduct);
-            })
-            .catch(error => console.error('Error fetching product:', error));
-    }, [id]); 
+  useEffect(() => {
+    fetch(`http://localhost:3000/products/${id}`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setFormData(data);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error('Error fetching product:', error);
+        setLoading(false);
+      });
+  }, [id]);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        
-        alert('Product updated successfully!');
-      
-       
-        toast.success('Product updated successfully!', {
-          position: toast.POSITION.TOP_CENTER
-        });
-      };
-      
-    if (!product) {
-        return <div>Loading...</div>;
-    }
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await fetch(`http://localhost:3000/products/${id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return res.json();
+      })
+      .then(() => {
+        toast.success('Product updated successfully!');
+        navigate('/');
+      })
+      .catch((error) => console.error('Error updating product:', error));
+  };
 
-    return (
-        <div className="container mx-auto px-4 py-8">
-            <h1 className="text-2xl font-bold mb-4">Edit Product</h1>
-            <form onSubmit={handleSubmit}>
-                <div className="mb-4">
-                    <label htmlFor="name" className="block text-sm font-bold mb-2">Product Name</label>
-                    <input type="text" id="name" name="name" value={product.name} className="border rounded-md px-4 py-2 w-full" readOnly />
-                </div>
-                <div className="mb-4">
-                    <label htmlFor="description" className="block text-sm font-bold mb-2">Description</label>
-                    <textarea id="description" name="description" value={product.description} className="border rounded-md px-4 py-2 w-full" readOnly></textarea>
-                </div>
-                <button type="submit" className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Update Product</button>
-            </form>
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-2xl font-bold mb-4">Edit Product</h1>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+          <label htmlFor="name" className="block text-sm font-bold mb-2">
+            Product Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+            className="border rounded-md px-4 py-2 w-full"
+          />
         </div>
-    );
+        <div className="mb-4">
+          <label htmlFor="description" className="block text-sm font-bold mb-2">
+            Description
+          </label>
+          <textarea
+            id="description"
+            name="description"
+            value={formData.description}
+            onChange={(e) =>
+              setFormData({ ...formData, description: e.target.value })
+            }
+            className="border rounded-md px-4 py-2 w-full"
+          ></textarea>
+        </div>
+        <button
+          type="submit"
+          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Update Product
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default EditProduct;

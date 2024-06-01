@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import  { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -5,10 +7,25 @@ import { toast } from 'react-toastify';
 const AddProduct = () => {
   const [formData, setFormData] = useState({ name: '', description: '' });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    const {name, description, createdAt} = formData;
+    await fetch('http://localhost:3000/products', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json',
+
+      },
+      body: JSON.stringify({name, description}),
+    })
+    .then(res => res.json())
+    .then(data=> {
+      console.log(data);
+      setFormData({ name: '', description: '' });
+      toast.success("Product added successfully!");
+    })
     
-    toast.success("Product added successfully!");
+   
     
   };
 
