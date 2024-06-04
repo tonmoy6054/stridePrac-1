@@ -78,8 +78,22 @@ const provider = new GoogleAuthProvider();
 const handleGoogleSignIn = () => {
   signInWithPopup(auth, provider)
     .then((result) => {
-      const user = result.user;
-      console.log(user);
+      // const user = result.user;
+      const userInfo = {
+        email: result?.user?.email,
+        name: result?.user?.displayName
+      }
+      fetch('http://localhost:3000/users', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userInfo),
+      }).then(res => res.json())
+      .then(data => {
+        console.log(data);
+      })
+      
     })
     .catch((error) => {
       console.error("Error signing in with Google:", error.message);

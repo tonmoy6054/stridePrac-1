@@ -1,74 +1,3 @@
-// import {
-//     createBrowserRouter,
-
-//   } from "react-router-dom";
-// import MainLayout from "../layouts/MainLayout";
-
-// import About from "../pages/about/About";
-// import Contact from "../pages/contact/Contact";
-// import Login from "../pages/Login/Login";
-// import Register from "../pages/register/Register";
-// import AllProducts from "../pages/products/AllProducts";
-
-// import Home from "../components/home/Home";
-// import AllCategories from "../pages/all-categories/AllCategories";
-
-// import AddProduct from "../layouts/AddProduct";
-// import EditProduct from "../layouts/EditProduct";
-// import Dashboard from "../layouts/DashboardLayout";
-
-// const router = createBrowserRouter([
-//     {
-//       path: "/",
-//       element: <MainLayout />,
-//       children: [
-//         {
-//         index: true,
-//         element: <Home />
-//       },
-//         {
-//         path: 'about',
-//         element: <About />
-//       },
-//         {
-//         path: 'contact',
-//         element: <Contact />
-//       },
-//         {
-//         path: 'login',
-//         element: <Login />
-//       },
-//         {
-//         path: 'register',
-//         element: <Register />
-//       },
-//         {
-//         path: 'allproducts',
-//         element: <AllProducts />
-//       },
-//     {
-//       path: 'all-categories',
-//       element: <AllCategories />
-
-//     }
-//     ]
-//     },
-
-//     <PrivateRoute path="/dashboard" component={Dashboard} />
-
-//     {
-//         path: '/edit-product/:id',
-//         element: <EditProduct />
-//     },
-//     {
-//         path: '/add-product',
-//         element: <AddProduct />
-//     },
-//   ])
-//   export default router;
-
-// src/routes/Routes.jsx
-// src/routes/Routes.jsx
 import {
   createBrowserRouter,
   RouterProvider,
@@ -86,8 +15,25 @@ import AllCategories from "../pages/all-categories/AllCategories";
 import AddProduct from "../layouts/AddProduct";
 import EditProduct from "../layouts/EditProduct";
 import Dashboard from "../layouts/DashboardLayout";
-import PrivateRoute from "../routes/PrivateRoute";
+import PrivateRoute from "./PrivateRoute";
 import ProductDetails from "../layouts/ProductDetails";
+import EditUserProfile from "../layouts/EditUserProfile";
+
+// const fetchUserData = async ({ params }) => {
+//   try {
+//     const response = await fetch(`http://localhost:3000/users/get/${params.id}`);
+//     if (!response.ok) {
+//       const errorDetails = await response.text();
+//       console.error('Error details:', errorDetails);
+//       throw new Error('Network response was not ok');
+//     }
+//     const userData = await response.json();
+//     return userData;
+//   } catch (error) {
+//     console.error("Failed to fetch user data:", error);
+//     throw error;
+//   }
+// };
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -106,6 +52,12 @@ const router = createBrowserRouter(
         <Route path="/edit-product/:id" element={<EditProduct />} />
         <Route path="/add-product" element={<AddProduct />} />
         <Route path="/products/:id" element={<ProductDetails />} />
+        <Route
+  path="profile/edit/:id"
+  element={<EditUserProfile />}
+  loader={({ params }) => fetch(`http://localhost:3000/users/get/${params.id}`).then(res => res.json())}
+/>
+
       </Route>
     </>
   )
