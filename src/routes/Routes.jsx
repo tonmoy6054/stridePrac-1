@@ -3,6 +3,7 @@ import {
   RouterProvider,
   Route,
   createRoutesFromElements,
+  useRouteError,
 } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
 import About from "../pages/about/About";
@@ -18,6 +19,37 @@ import Dashboard from "../layouts/DashboardLayout";
 import PrivateRoute from "./PrivateRoute";
 import ProductDetails from "../layouts/ProductDetails";
 import EditUserProfile from "../layouts/EditUserProfile";
+
+
+function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
+
+  return (
+    <div>
+      <h1>Unexpected Application Error</h1>
+      <p>{error.statusText}</p>
+    </div>
+  );
+}
+
+
+
+
+const loader = async ({ params }) => {
+  const url = `https://r-p-server-4pfbeq1t3-tonmoy6054s-projects.vercel.app/users/get/${params.id}`;
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error(`Network response was not ok: ${response.statusText}`);
+    }
+    return response.json();
+  } catch (error) {
+    console.error(`Failed to fetch user data from ${url}:`, error);
+    throw new Response("Failed to fetch user data", { status: 500, statusText: error.message });
+  }
+};
+
 
 
 const router = createBrowserRouter(
@@ -40,7 +72,8 @@ const router = createBrowserRouter(
         <Route
   path="profile/edit/:id"
   element={<EditUserProfile />}
-  loader={({ params }) => fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users/get/${params.id}`).then(res => res.json())}
+  loader={loader}
+  errorElement={<ErrorBoundary />}
 />
 
       </Route>

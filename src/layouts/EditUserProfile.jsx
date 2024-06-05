@@ -43,7 +43,7 @@ const EditUserProfile = () => {
       }
 
       
-      const response = await fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users/${data?.email}`, {
+      const response = await fetch(`https://r-p-server-4pfbeq1t3-tonmoy6054s-projects.vercel.app/users/${data?.email}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

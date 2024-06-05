@@ -26,7 +26,7 @@ const Register = () => {
           uid: result.user.uid
         };
         console.log('User info to be sent:', userInfo);
-        return fetch('https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users', {
+        return fetch('https://r-p-server-4pfbeq1t3-tonmoy6054s-projects.vercel.app/users', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

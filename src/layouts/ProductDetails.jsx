@@ -7,7 +7,7 @@ const ProductDetails = () => {
 
   useEffect(() => {
     
-    fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/products/${id}`)
+    fetch(`https://r-p-server-4pfbeq1t3-tonmoy6054s-projects.vercel.app/products/${id}`)
       .then(response => response.json())
       .then(data => setProduct(data))
       .catch(error => console.error('Error fetching product details:', error));

@@ -17,7 +17,7 @@ const handleGoogleSignIn = () => {
         name: result?.user?.displayName
       };
 
-      fetch('https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users', {
+      fetch('https://r-p-server-4pfbeq1t3-tonmoy6054s-projects.vercel.app/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ const handleGoogleSignIn = () => {
       })
       .then(res => {
         if (res.status === 409) {
-          return fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users/${userInfo.email}`)
+          return fetch(`https://r-p-server-4pfbeq1t3-tonmoy6054s-projects.vercel.app/users/${userInfo.email}`)
             .then(res => res.json());
         }
         return res.json();
@@ -61,7 +61,7 @@ const Login = () => {
     signInWithEmailAndPassword(auth, form.email, form.password)
       .then((userCredential) => {
         console.log("Logged in:", userCredential.user);
-        fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users/${form.email}`)
+        fetch(`https://r-p-server-4pfbeq1t3-tonmoy6054s-projects.vercel.app/users/${form.email}`)
           .then(res => res.json())
           .then(data => {
             console.log(data);
