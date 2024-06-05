@@ -9,7 +9,7 @@ const EditProduct = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/products/${id}`)
+    fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/products/${id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -27,11 +27,14 @@ const EditProduct = () => {
   }, [id]);
 
   const handleSubmit = async (e) => {
+    const token = localStorage.getItem('token');
     e.preventDefault();
-    await fetch(`http://localhost:3000/products/${id}`, {
+
+    await fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/products/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(formData),
     })

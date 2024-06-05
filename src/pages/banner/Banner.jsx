@@ -5,7 +5,7 @@ const Banner = () => {
       <div className="flex items-center justify-center h-full bg-gray-900 bg-opacity-50">
         <div className="text-center text-white p-4">
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4">Welcome to Our Website</h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl">Your success starts here</p>
+          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl">Your will find all your daily necessaries here</p>
           <button className="mt-4 px-6 py-3 bg-blue-500 hover:bg-blue-700 text-white font-semibold rounded-md">Get Started</button>
         </div>
       </div>

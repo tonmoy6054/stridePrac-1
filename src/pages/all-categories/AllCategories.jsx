@@ -8,7 +8,7 @@ const AllCategories = () => {
       try {
         const response = await fetch('/data/category.json');
         const data = await response.json();
-        setCategories(data); // Display all categories
+        setCategories(data); 
       } catch (error) {
         console.error('Error fetching the categories:', error);
       }

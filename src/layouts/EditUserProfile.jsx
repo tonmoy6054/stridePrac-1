@@ -42,8 +42,8 @@ const EditUserProfile = () => {
         await updateEmail(auth.currentUser, email);
       }
 
-      // Update the user's data in MongoDB
-      const response = await fetch(`http://localhost:3000/users/${data?.email}`, {
+      
+      const response = await fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users/${data?.email}`, {
         method: 'PATCH',
         headers: {
           'Content-Type': 'application/json'

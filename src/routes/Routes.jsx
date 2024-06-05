@@ -19,21 +19,6 @@ import PrivateRoute from "./PrivateRoute";
 import ProductDetails from "../layouts/ProductDetails";
 import EditUserProfile from "../layouts/EditUserProfile";
 
-// const fetchUserData = async ({ params }) => {
-//   try {
-//     const response = await fetch(`http://localhost:3000/users/get/${params.id}`);
-//     if (!response.ok) {
-//       const errorDetails = await response.text();
-//       console.error('Error details:', errorDetails);
-//       throw new Error('Network response was not ok');
-//     }
-//     const userData = await response.json();
-//     return userData;
-//   } catch (error) {
-//     console.error("Failed to fetch user data:", error);
-//     throw error;
-//   }
-// };
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -55,7 +40,7 @@ const router = createBrowserRouter(
         <Route
   path="profile/edit/:id"
   element={<EditUserProfile />}
-  loader={({ params }) => fetch(`http://localhost:3000/users/get/${params.id}`).then(res => res.json())}
+  loader={({ params }) => fetch(`https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/users/get/${params.id}`).then(res => res.json())}
 />
 
       </Route>

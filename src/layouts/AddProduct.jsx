@@ -10,7 +10,7 @@ const AddProduct = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     const {name, description, createdAt} = formData;
-    await fetch('http://localhost:3000/products', {
+    await fetch('https://r-p-server-ltnrm38y1-tonmoy6054s-projects.vercel.app/products', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json',
